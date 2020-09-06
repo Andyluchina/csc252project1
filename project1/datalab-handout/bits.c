@@ -153,7 +153,11 @@ int bitXor(int x, int y) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+  int x16 = 0xAA << 8 | 0xAA;
+  int x32 = x16 << 16 | x16;
+  int maskup = x32 | x;
+  int res = maskup^x;
+  return !res;
 }
 /*
  * conditional - same as x ? y : z
@@ -285,6 +289,8 @@ int floatFloat2Int(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
+
+  ///need revision
   int INF = 0xff<<23;
 int exp = x + 127;
 if(exp <= 0) return 0;
