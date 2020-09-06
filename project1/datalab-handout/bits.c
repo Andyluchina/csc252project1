@@ -172,7 +172,7 @@ int conditional(int x, int y, int z) {
  *   Rating: 1
  */
 int tmin(void) {
-  return 2;
+  return 0x1<<31;
 }
 /*
  * isTmax - returns 1 if x is the maximum, two's complement number,
