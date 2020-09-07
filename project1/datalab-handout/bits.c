@@ -294,6 +294,7 @@ int howManyBits(int x) {
  */
 unsigned floatScale2(unsigned uf) {
   int exp_mask = 0x7f<<23 | 0x8 << 15;
+  printf("%x\n", exp_mask);
   //capture exponent
   int exp = (uf&exp_mask)>>23;
   ///capture the sign
