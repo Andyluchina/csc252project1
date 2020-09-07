@@ -168,7 +168,7 @@ int allOddBits(int x) {
  */
 int conditional(int x, int y, int z) {
   int normalized_x = (!!x) << 31;
-  printf(normalized_x);
+  printf("%x",normalized_x);
   return (normalized_x & y) | (~normalized_x & z);
 }
 /*
