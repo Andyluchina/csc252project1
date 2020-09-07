@@ -231,6 +231,8 @@ int isLessOrEqual(int x, int y) {
 
   int sign_judge = !!(sign_x + (~sign_y+1));
   int sign_judge_spc = (sign_x + (~sign_y+1));
+
+  printf("%x\n%x\n", sign_judge,sign_judge_spc);
   int sum = x+(~y+1);
   int subtract_judge = sum >> 31;
   return (!sign_judge)&(subtract_judge)&(!!(x^y)) | !(sign_judge_spc^1)| !(x^y);
