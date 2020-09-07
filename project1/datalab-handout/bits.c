@@ -229,7 +229,7 @@ int isLessOrEqual(int x, int y) {
   int sign_x = x>>31;
   int sign_y = y>>31;
 
-  int sign_judge = (sign_x + (~sign_y+1));
+  int sign_judge = !!(sign_x + (~sign_y+1));
 
   int sum = x+(~y+1);
   int subtract_judge = sum >> 31;
