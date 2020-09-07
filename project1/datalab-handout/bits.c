@@ -212,7 +212,11 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  int upper = 0x39;
+  int lower = ~0x30 + 1;
+  int uppertest = (upper+(~x+1)) >> 31;
+  int lowertest = (lower + x) >> 31
+  return !(uppertest | lowertest);
 }
 /*
  * isLessOrEqual - if x <= y then return 1, else return 0
