@@ -293,7 +293,7 @@ int howManyBits(int x) {
  *   Rating: 4
  */
 unsigned floatScale2(unsigned uf) {
-  int exp_mask = 0x7f<<23 | 0x80 << 15;
+  int exp_mask = 0x7f<<24 | 0x80 << 16;
   printf("%x\n", exp_mask);
   //capture exponent
   int exp = (uf&exp_mask)>>23;
