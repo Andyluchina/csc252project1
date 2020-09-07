@@ -167,8 +167,8 @@ int allOddBits(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  int normalized_x = (!!x) << 31;
-  printf("%x",normalized_x);
+  int normalized_x = !!x;
+  printf("%x \n",normalized_x);
   return (normalized_x & y) | (~normalized_x & z);
 }
 /*
