@@ -247,7 +247,7 @@ int isLessOrEqual(int x, int y) {
  */
 int logicalNeg(int x) {
 
-  return (~((x>>31) | ((~x+1)>>31))+1) + 1;
+  return ((x>>31) | ((~x+1)>>31)) + 1;
   // return (is_zero>>31) | ((~is_zero+1)>>31);
 }
 /* howManyBits - return the minimum number of bits required to represent x in
@@ -308,11 +308,12 @@ int floatFloat2Int(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
-
-  ///need revision
-  int INF = 0xff<<23;
-int exp = x + 127;
-if(exp <= 0) return 0;
-if(exp >= 255) return INF;
-return exp << 23;
+  int res = x + 127;
+  if(res <= 0) {
+    return 0
+  };
+  if(res >= 255) {
+    return 0xff<<23
+  };
+  return exp << 23;
 }
