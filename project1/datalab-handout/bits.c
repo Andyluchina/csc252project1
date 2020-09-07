@@ -310,10 +310,10 @@ int floatFloat2Int(unsigned uf) {
 unsigned floatPower2(int x) {
   int res = x + 127;
   if(res <= 0) {
-    return 0
+    return 0;
   };
   if(res >= 255) {
-    return 0xff<<23
+    return 0xff<<23;
   };
   return exp << 23;
 }
