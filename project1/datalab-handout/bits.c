@@ -168,6 +168,7 @@ int allOddBits(int x) {
  */
 int conditional(int x, int y, int z) {
   int normalized_x = !!x;
+  normalized_x = normalized_x << 5;
   printf("%x \n",normalized_x);
   return (normalized_x & y) | (~normalized_x & z);
 }
