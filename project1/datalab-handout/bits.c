@@ -315,5 +315,5 @@ unsigned floatPower2(int x) {
   if(res >= 255) {
     return 0xff<<23;
   };
-  return exp << 23;
+  return res << 23;
 }
