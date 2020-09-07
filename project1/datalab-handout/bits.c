@@ -215,7 +215,7 @@ int isAsciiDigit(int x) {
   int upper = 0x39;
   int lower = ~0x30 + 1;
   int uppertest = (upper+(~x+1)) >> 31;
-  int lowertest = (lower + x) >> 31
+  int lowertest = (lower + x) >> 31;
   return !(uppertest | lowertest);
 }
 /*
