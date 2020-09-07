@@ -168,11 +168,11 @@ int allOddBits(int x) {
  */
 int conditional(int x, int y, int z) {
   int normalized_x = !!x;
-  printf("%x \n %d \n",normalized_x,normalized_x);
+  //printf("%x \n %d \n",normalized_x,normalized_x);
   normalized_x = (normalized_x << 31) ;
-  printf("%x \n %d \n",normalized_x,normalized_x);
+  //printf("%x \n %d \n",normalized_x,normalized_x);
   normalized_x = normalized_x >> 31;
-  printf("%x \n %d \n",normalized_x,normalized_x);
+  // printf("%x \n %d \n",normalized_x,normalized_x);
   return (normalized_x & y) | (~normalized_x & z);
 }
 /*
