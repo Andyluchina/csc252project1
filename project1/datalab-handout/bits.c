@@ -167,7 +167,8 @@ int allOddBits(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  int normalized_x = !!x;
+  return (normalized_x & y) | (~normalized_x & z);
 }
 /*
  * tmin - return minimum two's complement integer
