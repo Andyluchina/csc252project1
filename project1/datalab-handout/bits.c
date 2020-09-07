@@ -247,7 +247,7 @@ int isLessOrEqual(int x, int y) {
  */
 int logicalNeg(int x) {
 
-  return (((x>>31) | ((~x+1)>>31)) + 1);
+  return (~((x>>31) | ((~x+1)>>31))+1) + 1;
   // return (is_zero>>31) | ((~is_zero+1)>>31);
 }
 /* howManyBits - return the minimum number of bits required to represent x in
