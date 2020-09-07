@@ -246,7 +246,7 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4
  */
 int logicalNeg(int x) {
-
+  ////only zero gets 0 both times, a non zero number would get 1 and 0 for sign regardless
   return ((x>>31) | ((~x+1)>>31)) + 1;
   // return (is_zero>>31) | ((~is_zero+1)>>31);
 }
@@ -293,7 +293,10 @@ int howManyBits(int x) {
  *   Rating: 4
  */
 unsigned floatScale2(unsigned uf) {
-  int exp = (uf&0x7f800000)>>23;
+  int exp_mask = 0x7f<<31 | 0x8 << 23;
+  //capture exponent
+  int exp = (uf&exp_mask)>>23;
+  ///capture the sign
   int sign = uf&(1<<31);
   if(exp==0) return uf<<1|sign;
   if(exp==255) return uf;
@@ -348,6 +351,7 @@ unsigned floatPower2(int x) {
     return 0;
   };
   if(res >= 255) {
+    ///return inifinity
     return 0xff<<23;
   };
   return res << 23;
