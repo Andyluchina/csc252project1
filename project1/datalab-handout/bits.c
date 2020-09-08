@@ -333,17 +333,30 @@ int floatFloat2Int(unsigned uf) {
   int fraction = (uf&sub_exp_mask)|tmin_sub;
 
   int fraction_mask = 0x7f<<24 | 0xff<<16 | 0xff<<8 | 0xff;
-  if(!(uf&fraction_mask)) return 0;
+  if(!(uf&fraction_mask)) {
+    return 0;
+  };
 
-  if(exp > 31) return tmin;
-  if(exp < 0) return 0;
+  if(exp > 31) {
+    return tmin;
+  };
+  if(exp < 0) {
+    return 0;
+  };
 
-  if(exp > 23) fraction <<= (exp-23);
-  else fraction >>= (23-exp);
+  if(exp > 23) {
+    fraction <<= (exp-23);
+  }else {
+    fraction >>= (23-exp);
+  };
 
-  if(!((fraction>>31)^sign_digit)) return fraction;
-  else if(fraction>>31) return tmin;
-  else return ~fraction+1;
+  if(!((fraction>>31)^sign_digit)) {
+    return fraction;
+  }else if(fraction>>31) {
+    return tmin;
+  }else {
+    return ~fraction+1;
+  };
 }
 /*
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
