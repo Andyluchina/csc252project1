@@ -263,27 +263,21 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
-  int b16,b8,b4,b2,b1,b0;
+  int b1,b2,b3,b4,b5,b6;
   int sign=x>>31;
-  x = (sign&~x)|(~sign&x);
-  printf("x: %d\n", x);
-  b16 = !!(x>>16)<<4;
-  printf("b16: %d\n", b16);
-  x = x>>b16;
-  b8 = !!(x>>8)<<3;
-  printf("b8: %d\n", b8);
-  x = x>>b8;
-  b4 = !!(x>>4)<<2;
-  printf("b4: %d\n", b4);
-  x = x>>b4;
-  b2 = !!(x>>2)<<1;
-  printf("b2: %d\n", b2);
-  x = x>>b2;
-  b1 = !!(x>>1);
-  printf("b1: %d\n", b1);
+  x = (sign&~x)|(~sign&x); //// normalize x
+  b1 = !!(x>>16)<<4;
   x = x>>b1;
-  b0 = x;
-  return b16+b8+b4+b2+b1+b0+1;
+  b2 = !!(x>>8)<<3;
+  x = x>>b2;
+  b3 = !!(x>>4)<<2;
+  x = x>>b3;
+  b4 = !!(x>>2)<<1;
+  x = x>>b4;
+  b5 = !!(x>>1);
+  x = x>>b5;
+  b6 = x;
+  return b1+b2+b3+b4+b5+b6+1;
 }
 /*
  * floatScale2 - Return bit-level equivalent of expression 2*f for
