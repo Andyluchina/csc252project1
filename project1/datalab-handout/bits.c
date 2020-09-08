@@ -265,19 +265,19 @@ int logicalNeg(int x) {
 int howManyBits(int x) {
   int b1,b2,b3,b4,b5,b6;
   int sign=x>>31;
-  x = (sign&~x)|(~sign&x); //// normalize x
-  b1 = !!(x>>16)<<4;
+  x = (sign&~x)|(~sign&x); //// normalize x to positive as the pesty negative numbers have sign bit at the very front
+  b1 = !!(x>>16)<<4; //check first 16
   x = x>>b1;
-  b2 = !!(x>>8)<<3;
+  b2 = !!(x>>8)<<3;/// then 8 conditionally
   x = x>>b2;
-  b3 = !!(x>>4)<<2;
+  b3 = !!(x>>4)<<2;///4
   x = x>>b3;
-  b4 = !!(x>>2)<<1;
+  b4 = !!(x>>2)<<1;////2
   x = x>>b4;
-  b5 = !!(x>>1);
+  b5 = !!(x>>1);///1
   x = x>>b5;
   b6 = x;
-  return b1+b2+b3+b4+b5+b6+1;
+  return b1+b2+b3+b4+b5+b6+1; ////add them up and count for 0
 }
 /*
  * floatScale2 - Return bit-level equivalent of expression 2*f for
