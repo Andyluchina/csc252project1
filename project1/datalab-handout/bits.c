@@ -266,8 +266,9 @@ int howManyBits(int x) {
   int b16,b8,b4,b2,b1,b0;
   int sign=x>>31;
   x = (sign&~x)|(~sign&x);
-
+  printf("x: %x\n", x);
   b16 = !!(x>>16)<<4;
+  printf("b16: %x\n", b16);
   x = x>>b16;
   b8 = !!(x>>8)<<3;
   x = x>>b8;
