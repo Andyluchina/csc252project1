@@ -293,17 +293,23 @@ int howManyBits(int x) {
  *   Rating: 4
  */
 unsigned floatScale2(unsigned uf) {
+  ///capture the sign
+  int sign_uf = uf>>31;
   int exp_mask = 0x7f<<24 | 0x80 << 16;
-  printf("%x\n", exp_mask);
   //capture exponent
   int exp = (uf&exp_mask)>>23;
-  ///capture the sign
-  int sign = uf&(1<<31);
-  if(exp==0) return uf<<1|sign;
-  if(exp==255) return uf;
+  if(exp==0) {
+    return uf<<1|sign_uf;
+  };
+  if(exp==255) {
+    return uf;
+  };
   exp++;
-  if(exp==255) return 0x7f800000|sign;
-  return (exp<<23)|(uf&0x807fffff);
+  if(exp==255) {
+    return exp_mask|sign_uf;
+  }
+  int self_mask = 0x80<<24 | 0x7f<< 16 | 0xff << 8 | 0xff;
+  return (uf&self_mask) | (exp<<23);
 }
 /*
  * floatFloat2Int - Return bit-level equivalent of expression (int) f
