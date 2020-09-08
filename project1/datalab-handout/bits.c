@@ -294,7 +294,7 @@ int howManyBits(int x) {
  */
 unsigned floatScale2(unsigned uf) {
   ///capture the sign
-  int sign_uf = uf>>31;
+  int sign_uf = (uf>>31) << 31;
   int exp_mask = 0x7f<<24 | 0x80 << 16;
   //capture exponent
   int exp = (uf&exp_mask)>>23;
