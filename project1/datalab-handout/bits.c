@@ -271,12 +271,16 @@ int howManyBits(int x) {
   printf("b16: %x\n", b16);
   x = x>>b16;
   b8 = !!(x>>8)<<3;
+  printf("b8: %x\n", b8);
   x = x>>b8;
   b4 = !!(x>>4)<<2;
+  printf("b4: %x\n", b4);
   x = x>>b4;
   b2 = !!(x>>2)<<1;
+  printf("b2: %x\n", b2);
   x = x>>b2;
   b1 = !!(x>>1);
+  printf("b1: %x\n", b1);
   x = x>>b1;
   b0 = x;
   return b16+b8+b4+b2+b1+b0+1;
