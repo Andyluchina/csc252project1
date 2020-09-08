@@ -267,7 +267,6 @@ int howManyBits(int x) {
   int sign=x>>31;
   x = (sign&~x)|(~sign&x);
 
-
   b16 = !!(x>>16)<<4;
   x = x>>b16;
   b8 = !!(x>>8)<<3;
@@ -307,7 +306,7 @@ unsigned floatScale2(unsigned uf) {
   exp++;
   if(exp==255) {
     return exp_mask|sign_uf;
-  }
+  };
   int self_mask = 0x80<<24 | 0x7f<<16 | 0xff<<8 | 0xff;
   return (uf&self_mask) | (exp<<23);
 }
