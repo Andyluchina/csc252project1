@@ -326,10 +326,11 @@ unsigned floatScale2(unsigned uf) {
 int floatFloat2Int(unsigned uf) {
   int sign_digit = uf>>31;
   int tmin = 0x1<<31;
+  int tmin_sub = 0x80<<16;
   int exp_mask = 0x7f<<24 | 0x80 << 16;
   int sub_exp_mask = 0x7f<<16 | 0xff<<8 | 0xff;
   int exp  = ((uf&exp_mask)>>23)-127;
-  int frac_ = (uf&sub_exp_mask)|0x00800000;
+  int frac_ = (uf&sub_exp_mask)|tmin_sub;
 
   int frac_mask = 0x7f<<24 | 0xff<<16 | 0xff<<8 | 0xff;
   if(!(uf&frac_mask)) return 0;
