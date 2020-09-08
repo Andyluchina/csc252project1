@@ -308,7 +308,7 @@ unsigned floatScale2(unsigned uf) {
   if(exp==255) {
     return exp_mask|sign_uf;
   }
-  int self_mask = 0x80<<24 | 0x7f<< 16 | 0xff << 8 | 0xff;
+  int self_mask = 0x80<<24 | 0x7f<<16 | 0xff<<8 | 0xff;
   return (uf&self_mask) | (exp<<23);
 }
 /*
@@ -324,19 +324,24 @@ unsigned floatScale2(unsigned uf) {
  *   Rating: 4
  */
 int floatFloat2Int(unsigned uf) {
-  int s_    = uf>>31;
-  int exp_  = ((uf&0x7f800000)>>23)-127;
-  int frac_ = (uf&0x007fffff)|0x00800000;
-  if(!(uf&0x7fffffff)) return 0;
+  int sign_digit = uf>>31;
+  int tmin = 0x1<<31;
+  int exp_mask = 0x7f<<24 | 0x80 << 16;
+  int sub_exp_mask = 0x7f<<16 | 0xff<<8 | 0xff;
+  int exp  = ((uf&exp_mask)>>23)-127;
+  int frac_ = (uf&sub_exp_mask)|0x00800000;
 
-  if(exp_ > 31) return 0x80000000;
-  if(exp_ < 0) return 0;
+  int frac_mask = 0x7f<<24 | 0xff<<16 | 0xff<<8 | 0xff;
+  if(!(uf&frac_mask)) return 0;
 
-  if(exp_ > 23) frac_ <<= (exp_-23);
-  else frac_ >>= (23-exp_);
+  if(exp > 31) return tmin;
+  if(exp < 0) return 0;
 
-  if(!((frac_>>31)^s_)) return frac_;
-  else if(frac_>>31) return 0x80000000;
+  if(exp > 23) frac_ <<= (exp-23);
+  else frac_ >>= (23-exp);
+
+  if(!((frac_>>31)^sign_digit)) return frac_;
+  else if(frac_>>31) return tmin;
   else return ~frac_+1;
 }
 /*
