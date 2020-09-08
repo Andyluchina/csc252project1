@@ -330,20 +330,20 @@ int floatFloat2Int(unsigned uf) {
   int exp_mask = 0x7f<<24 | 0x80 << 16;
   int sub_exp_mask = 0x7f<<16 | 0xff<<8 | 0xff;
   int exp  = ((uf&exp_mask)>>23)-127;
-  int frac_ = (uf&sub_exp_mask)|tmin_sub;
+  int fraction = (uf&sub_exp_mask)|tmin_sub;
 
-  int frac_mask = 0x7f<<24 | 0xff<<16 | 0xff<<8 | 0xff;
-  if(!(uf&frac_mask)) return 0;
+  int fraction_mask = 0x7f<<24 | 0xff<<16 | 0xff<<8 | 0xff;
+  if(!(uf&fraction_mask)) return 0;
 
   if(exp > 31) return tmin;
   if(exp < 0) return 0;
 
-  if(exp > 23) frac_ <<= (exp-23);
-  else frac_ >>= (23-exp);
+  if(exp > 23) fraction <<= (exp-23);
+  else fraction >>= (23-exp);
 
-  if(!((frac_>>31)^sign_digit)) return frac_;
-  else if(frac_>>31) return tmin;
-  else return ~frac_+1;
+  if(!((fraction>>31)^sign_digit)) return fraction;
+  else if(fraction>>31) return tmin;
+  else return ~fraction+1;
 }
 /*
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
